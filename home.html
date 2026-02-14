@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Center - SamProject</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #3a7bd5;
+            --dark: #0f172a;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* --- Background Animation --- */
+        .bg-animate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+        }
+
+        .blob {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+            animation: move 10s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-20%, -20%); }
+            to { transform: translate(20%, 20%); }
+        }
+
+        /* --- Main Container --- */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            padding: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Pricing Grid --- */
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .payment-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 35px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .payment-card:hover {
+            transform: translateY(-15px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 210, 255, 0.2);
+        }
+
+        .payment-card.featured {
+            border: 2px solid var(--primary);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 15px 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            font-weight: 300;
+            color: #ccc;
+        }
+
+        .features {
+            list-style: none;
+            margin: 20px 0 30px;
+            text-align: left;
+        }
+
+        .features li {
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        .features li i {
+            color: #00ff88;
+            margin-right: 10px;
+        }
+
+        /* --- Checkout Button --- */
+        .btn-pay {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-pay:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 5px 15px rgba(0, 210, 255, 0.4);
+        }
+
+        /* --- Payment Methods --- */
+        .methods {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .methods-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            opacity: 0.7;
+        }
+
+        .methods-icons i {
+            font-size: 2rem;
+            transition: 0.3s;
+        }
+
+        .methods-icons i:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        /* --- Keyframes --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-animate">
+        <div class="blob"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1>Pilih Paket Layanan</h1>
+            <p>Upgrade pengalaman Anda di SamProject</p>
+        </header>
+
+        <div class="payment-grid">
+            <div class="payment-card">
+                <div class="card-icon"><i class="fas fa-paper-plane"></i></div>
+                <h3>Starter</h3>
+                <div class="price">Rp 50k<span>/bln</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check"></i> Akses Dasar</li>
+                    <li><i class="fas fa-check"></i> Cloud Storage 5GB</li>
+                    <li><i class="fas fa-times" style="color: #ff4d4d;"></i> Prioritas Support</li>
+                </ul>
+                <a href="#" class="btn-pay">Pilih Starter</a>
+            </div>
+
+            <div class="payment-card featured">
+                <div class="card-icon"><i class="fas fa-rocket"></i></div>
+                <h3>Pro Member</h3>
+                <div class="price">Rp 150k<span>/bln</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check"></i> Semua Fitur Starter</li>
+                    <li><i class="fas fa-check"></i> Unlimited Bandwidth</li>
+                    <li><i class="fas fa-check"></i> API Access</li>
+                    <li><i class="fas fa-check"></i> Support 24/7</li>
+                </ul>
+                <a href="#" class="btn-pay">Upgrade Pro</a>
+            </div>
+
+            <div class="payment-card">
+                <div class="card-icon"><i class="fas fa-crown"></i></div>
+                <h3>Exclusive</h3>
+                <div class="price">Rp 500k<span>/bln</span></div>
+                <ul class="features">
+                    <li><i class="fas fa-check"></i> Custom Domain</li>
+                    <li><i class="fas fa-check"></i> Full Source Code</li>
+                    <li><i class="fas fa-check"></i> Dedicated Server</li>
+                </ul>
+                <a href="#" class="btn-pay">Beli Sekarang</a>
+            </div>
+        </div>
+
+        <div class="methods">
+            <p>Kami menerima pembayaran melalui:</p>
+            <div class="methods-icons">
+                <i class="fab fa-cc-visa" title="Visa"></i>
+                <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                <i class="fab fa-paypal" title="Paypal"></i>
+                <i class="fas fa-wallet" title="E-Wallet"></i>
+                <i class="fas fa-qrcode" title="QRIS"></i>
+            </div>
+            <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">
+                <a href="index.html" style="color: white; text-decoration: none;">&larr; Kembali ke Biodata</a>
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
